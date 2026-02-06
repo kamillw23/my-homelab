@@ -14,4 +14,3 @@ spec:
   path: ./controllers
   prune: true
   wait: true
-
