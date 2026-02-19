@@ -29,7 +29,7 @@ patches:
       - op: replace
         path: "/data/settings.yaml"
         value: |
-          base: http://homelab/homepage
+          base: /homepage
           title: My custom homelab Homepage
           theme: dark
           headerStyle: clean
