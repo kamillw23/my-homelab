@@ -22,14 +22,25 @@ patches:
         path: "/spec/template/spec/containers/0/env/0/value"
         value: "homelab"
 
-  - target:
+  # - target:
+  #     kind: ConfigMap
+  #     name: homepage
+  #   patch: |
+  #     - op: replace
+  #       path: "/data/settings.yaml"
+  #       value: |
+  #         base: /homepage
+  #         title: My custom homelab Homepage
+  #         theme: dark
+  #         headerStyle: clean
+
+  - patch: |
+      apiVersion: v1
       kind: ConfigMap
-      name: homepage
-    patch: |
-      - op: replace
-        path: "/data/settings.yaml"
-        value: |
+      metadata:
+        name: homepage
+        namespace: homepage
+      data:
+        settings.yaml: |
           base: /homepage
-          title: My custom homelab Homepage
-          theme: dark
-          headerStyle: clean
+          title: My test homelab Homepage
