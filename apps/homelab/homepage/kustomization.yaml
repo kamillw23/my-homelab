@@ -9,7 +9,7 @@ patches:
     patch: |
       - op: replace
         path: "/spec/rules/0/host"
-        value: "my-homelab"
+        value: "homelab"
       - op: replace
         path: "/spec/rules/0/http/paths/0/path"
         value: "/homepage"
@@ -20,4 +20,16 @@ patches:
     patch: |
       - op: replace
         path: "/spec/template/spec/containers/0/env/0/value"
-        value: "my-homelab"
+        value: "homelab"
+
+  - target:
+      kind: ConfigMap
+      name: homepage
+    patch: |
+      - op: replace
+        path: "/data/settings.yaml"
+        value: |
+          base: http://homelab/homepage
+          title: My custom homelab Homepage
+          theme: dark
+          headerStyle: clean
