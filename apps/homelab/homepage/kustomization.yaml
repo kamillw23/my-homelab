@@ -10,7 +10,7 @@ patches:
     patch: |
       - op: replace
         path: "/spec/rules/0/host"
-        value: "homelab.local"
+        value: "homelab.home"
       - op: replace
         path: "/spec/rules/0/http/paths/0/path"
         value: "/"
@@ -22,7 +22,7 @@ patches:
     patch: |
       - op: replace
         path: "/spec/template/spec/containers/0/env/0/value"
-        value: "homelab.local"
+        value: "homelab.home"
 
   # Add entries to settings.yaml file for homepage
   - patch: |
