@@ -3,25 +3,28 @@ kind: Kustomization
 resources:
   - ../../base/homepage
 patches:
+  # Change host name and path in Ingress resource
   - target:
       kind: Ingress
       name: homepage
     patch: |
       - op: replace
         path: "/spec/rules/0/host"
-        value: "homelab"
+        value: "homelab.local"
       - op: replace
         path: "/spec/rules/0/http/paths/0/path"
         value: "/"
 
+  # Change allowed hosts for homepage deployment
   - target:
       kind: Deployment
       name: homepage
     patch: |
       - op: replace
         path: "/spec/template/spec/containers/0/env/0/value"
-        value: "homelab"
+        value: "homelab.local"
 
+  # Add entries to settings.yaml file for homepage
   - patch: |
       apiVersion: v1
       kind: ConfigMap
