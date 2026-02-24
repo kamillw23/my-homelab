@@ -20,7 +20,5 @@ spec:
     - name: infrastructure
       originRevision: "@monorepo"
       copy:
-        - from: "@monorepo/infrastructure/base/**"
-          to: "@artifact/base/"
-        - from: "@monorepo/infrastructure/homelab/**"
-          to: "@artifact/homelab/"
+        - from: "@monorepo/infrastructure/**"
+          to: "@artifact/"
