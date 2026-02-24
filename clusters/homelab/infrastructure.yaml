@@ -11,6 +11,6 @@ spec:
   sourceRef:
     kind: ExternalArtifact
     name: infrastructure
-  path: ./homelab
+  path: ./monitoring
   prune: true
   wait: true
