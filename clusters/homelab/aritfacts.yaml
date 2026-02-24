@@ -17,3 +17,8 @@ spec:
           to: "@artifact/base/"
         - from: "@monorepo/apps/homelab/**"
           to: "@artifact/homelab/"
+    - name: infrastructure
+      originRevision: "@monorepo"
+      copy:
+        - from: "@monorepo/infrastructure/**"
+          to: "@artifact/"
