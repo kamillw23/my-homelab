@@ -11,6 +11,6 @@ spec:
   sourceRef:
     kind: ExternalArtifact
     name: infrastructure
-  path: ./monitoring
+  path: ./overlays
   prune: true
   wait: true
