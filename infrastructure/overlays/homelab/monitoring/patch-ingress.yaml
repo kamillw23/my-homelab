@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: "homelab"
+      http:
+        paths:
+          - path: "/monitoring"
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana
+                port:
+                  number: 80
