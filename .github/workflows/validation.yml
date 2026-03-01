@@ -40,11 +40,10 @@ jobs:
       fail-fast: true
     steps:
       - name: Install kustomize
-        run: curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+        run: curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
 
       - name: Install kubeconform
-        run: curl -L https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xvzf - &&
-              cp kubeconform /home/runner/work/my-homelab/my-homelab/
+        run: curl -L https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xvzf -
 
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
@@ -52,4 +51,4 @@ jobs:
         run: kustomize build ${{ matrix.path }} > manifests.yaml
 
       - name: Validate manifests
-        run: kubeconform -summary -output manifests.yaml
+        run: kubeconform -summary manifests.yaml
