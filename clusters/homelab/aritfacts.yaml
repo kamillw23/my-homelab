@@ -15,8 +15,8 @@ spec:
       copy:
         - from: "@monorepo/apps/base/**"
           to: "@artifact/base/"
-        - from: "@monorepo/apps/homelab/**"
-          to: "@artifact/homelab/"
+        - from: "@monorepo/apps/overlays/homelab/**"
+          to: "@artifact/overlays/"
     - name: infrastructure
       originRevision: "@monorepo"
       copy:
