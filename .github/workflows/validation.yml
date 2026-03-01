@@ -1,0 +1,48 @@
+# validation.yaml worfklow
+#
+# This workflow preforms:
+# 1. linitng on manifest files,
+# 2. runs kustomize to generate manifests
+# 3. runs kubeconform to validate generated manifests
+#
+
+name: Validate YAML
+on:
+  push:
+  pull_request:
+    branches: [ "main" ]
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install yamllint
+        run: sudo apt-get install -y yamllint
+
+      - uses: actions/checkout@v4
+
+      - name: Lint YAML files
+        run: yamllint .
+
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        path: [ "app/overlays/homelab/homepage/", "infrastructure/overlays/homelab/monitoring/" ]
+      fail-fast: true
+    steps:
+      - name: Install kustomize
+        run: curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
+
+      - name: Install kubeconform
+        run: curl -L https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xvzf - && \
+              sudo mv kubeconform /usr/local/bin/
+
+      - uses: actions/checkout@v4
+
+      - name: Generate manifests
+        run: kustomize build ${{ matrix.path }} > manifests.yaml
+
+      - name: Validate manifests
+        run: kubeconform -summary -output manifests.yaml
