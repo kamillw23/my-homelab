@@ -42,12 +42,13 @@ jobs:
         run: curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"  | bash
 
       - name: Install kubeconform
-        run: curl -L https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xvzf -
-
+        run: curl -L https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xvzf - && \
+              ls ./
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Generate manifests
-        run: kustomize build ${{ matrix.path }} > manifests.yaml
+        run: kustomize build ${{ matrix.path }} > manifests.yaml &&
+              cat manifests.yaml
 
       - name: Validate manifests
         run: ./kubeconform -summary -output manifests.yaml
