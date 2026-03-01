@@ -39,12 +39,12 @@ jobs:
         path: [ "apps/overlays/homelab/homepage/", "infrastructure/overlays/homelab/monitoring/" ]
       fail-fast: true
     steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
       - name: Install kubeconform
         run: |
           curl -L https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xvzf -
-          echo "$GITHUB_WORKSPACE" >> $GITHUB_PATH
-
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+          echo "$(pwd)" >> $GITHUB_PATH
 
       - name: Generate manifests
         run: kustomize build ${{ matrix.path }} > manifests.yaml
