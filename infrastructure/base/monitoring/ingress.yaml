@@ -5,13 +5,13 @@ metadata:
   name: grafana
 spec:
   rules:
-  - host: grafana
-    http:
-      paths:
-      - backend:
-          service:
-            name: grafana
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
+    - host: grafana
+      http:
+        paths:
+          - backend:
+              service:
+                name: grafana
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
