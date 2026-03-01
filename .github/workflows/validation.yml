@@ -20,7 +20,7 @@ jobs:
       - name: Install yamllint
         run: sudo apt-get install -y yamllint
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Lint YAML files
         run: yamllint .
@@ -39,7 +39,7 @@ jobs:
         run: curl -L https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xvzf - && \
               sudo mv kubeconform /usr/local/bin/
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Generate manifests
         run: kustomize build ${{ matrix.path }} > manifests.yaml
