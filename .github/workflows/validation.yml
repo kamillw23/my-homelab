@@ -23,11 +23,11 @@ jobs:
 
       - name: Lint YAML files in app directory
         run: yamllint .
-        working-directory: app
+        working-directory: ./apps
 
       - name: Lint YAML files in infrastructure directory
         run: yamllint .
-        working-directory: infrastructure
+        working-directory: ./infrastructure
 
   validate:
     needs:
