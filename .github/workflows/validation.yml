@@ -48,4 +48,4 @@ jobs:
         run: kustomize build ${{ matrix.path }} > manifests.yaml
 
       - name: Validate manifests
-        run: ./kubeconform -summary manifests.yaml
+        run: ./kubeconform -summary -schema-location default -schema-location https://github.com/fluxcd-community/flux2-schemas manifests.yaml
