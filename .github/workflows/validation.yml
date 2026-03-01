@@ -21,10 +21,17 @@ jobs:
 
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
-      - name: Lint YAML files
+      - name: Lint YAML files in app directory
         run: yamllint .
+        working-directory: ./app
+
+      - name: Lint YAML files in infrastructure directory
+        run: yamllint .
+        working-directory: ./infrastructure
 
   validate:
+    needs:
+      - lint
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -36,7 +43,7 @@ jobs:
 
       - name: Install kubeconform
         run: curl -L https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xvzf - && \
-              sudo mv kubeconform /usr/local/bin/
+              mv kubeconform /usr/local/bin/
 
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
