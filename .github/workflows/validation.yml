@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        path: [ "app/overlays/homelab/homepage/", "infrastructure/overlays/homelab/monitoring/" ]
+        path: [ "apps/overlays/homelab/homepage/", "infrastructure/overlays/homelab/monitoring/" ]
       fail-fast: true
     steps:
       - name: Install kustomize
@@ -44,15 +44,12 @@ jobs:
 
       - name: Install kubeconform
         run: curl -L https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xvzf - &&
-              echo "$(pwd)" >> "$GITHUB_PATH" &&
-              echo $PATH &&
-              echo $GITHUB_PATH
+              cp kubeconform /home/runner/work/my-homelab/my-homelab/
 
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Generate manifests
-        run: kustomize build ${{ matrix.path }} > manifests.yaml &&
-              cat manifests.yaml
+        run: kustomize build ${{ matrix.path }} > manifests.yaml
 
       - name: Validate manifests
         run: kubeconform -summary -output manifests.yaml
