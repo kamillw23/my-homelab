@@ -49,7 +49,6 @@ jobs:
 
       - name: Validate manifests
         run: |
-          ./kubeconform -summary -schema-location default \
-            -schema-location https://github.com/fluxcd-community/flux2-schemas/blob/main/helmrelease-helm-v2.json \
-            -schema-location https://github.com/fluxcd-community/flux2-schemas/blob/main/helmrepository-source-v1.json \
+          ./kubeconform -summary -strict -schema-location default \
+            -schema-location https://github.com/fluxcd-community/flux2-schemas/main/{{.ResourceKind}}-{{.ResourceAPIVersion}}.json \
             manifests.yaml
