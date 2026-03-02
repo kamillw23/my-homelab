@@ -1,0 +1,54 @@
+# validation.yaml worfklow
+#
+# This workflow preforms:
+# 1. linitng on manifest files,
+# 2. runs kustomize to generate manifests
+# 3. runs kubeconform to validate generated manifests
+#
+
+name: Validate YAML
+on:
+  workflow_dispatch:
+  pull_request:
+    branches: [ "main" ]
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install yamllint
+        run: sudo apt-get install -y yamllint
+
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - name: Lint YAML files in app directory
+        run: yamllint .
+        working-directory: ./apps
+
+      - name: Lint YAML files in infrastructure directory
+        run: yamllint .
+        working-directory: ./infrastructure
+
+  validate:
+    needs:
+      - lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        path: [ "apps/overlays/homelab/homepage/", "infrastructure/overlays/homelab/monitoring/" ]
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+
+      - name: Install kubeconform
+        run: |
+          curl -L https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar xvzf -
+      - name: Generate manifests
+        run: kustomize build ${{ matrix.path }} > manifests.yaml
+
+      - name: Validate manifests
+        run: |
+          ./kubeconform -summary -strict -schema-location default \
+            -schema-location https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json \
+            manifests.yaml
