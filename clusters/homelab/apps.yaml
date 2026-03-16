@@ -11,6 +11,6 @@ spec:
   sourceRef:
     kind: ExternalArtifact
     name: apps
-  path: ./homelab
+  path: ./overlays
   prune: true
   wait: true
