@@ -9,10 +9,10 @@ spec:
     - host: "homelab"
       http:
         paths:
-          - path: "/homelab"
+          - path: "/ha"
             pathType: Prefix
             backend:
               service:
-                name: homepage
+                name: home-assistant
                 port:
                   number: 8123
