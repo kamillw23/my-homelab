@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosquitto
+spec:
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+    spec:
+      containers:
+        - name: mosquitto
+          image: eclipse-mosquitto:latest
+          args:
+            - "/usr/sbin/mosquitto"
+            - "-c"
+            - "/mosquitto/config/config"
+            - "-u"
+            - "/etc/mosquitto/config/users"
+          volumeMounts:
+            - name: configuration
+              mountPath: /mosquitto/config/
+            - name: credentials
+              mountPath: /mosquitto/config/
+              readOnly: true
+      volumes:
+        - name: configuration
+          configMap:
+            name: mosquitto-config
+        - name: credentials
+          secret:
+            secretName: mosquitto-credentials
