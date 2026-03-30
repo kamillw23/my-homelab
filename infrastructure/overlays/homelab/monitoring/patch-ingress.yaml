@@ -7,10 +7,10 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: "homelab"
+    - host: "monitoring.homelab"
       http:
         paths:
-          - path: "/monitoring"
+          - path: "/"
             pathType: Prefix
             backend:
               service:

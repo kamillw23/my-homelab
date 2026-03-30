@@ -8,6 +8,6 @@ spec:
   values:
     grafana.ini:
       server:
-        domain: homelab
-        root_url: "%(protocol)s://%(domain)s:%(http_port)s/monitoring/"
+        domain: monitoring.homelab
+        root_url: "%(protocol)s://%(domain)s:%(http_port)s/"
         serve_from_sub_path: true
