@@ -6,10 +6,10 @@ metadata:
   namespace: home-assistant
 spec:
   rules:
-    - host: "homelab"
+    - host: "ha.homelab"
       http:
         paths:
-          - path: "/ha"
+          - path: "/"
             pathType: Prefix
             backend:
               service:
