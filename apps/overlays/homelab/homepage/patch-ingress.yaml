@@ -5,6 +5,7 @@ metadata:
   name: homepage
   namespace: homepage
 spec:
+  ingressClassName: traefik
   rules:
     - host: "homelab"
       http:

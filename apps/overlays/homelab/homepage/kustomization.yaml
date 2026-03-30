@@ -8,13 +8,7 @@ patches:
   - target:
       kind: Ingress
       name: homepage
-    patch: |
-      - op: replace
-        path: "/spec/rules/0/host"
-        value: "homelab"
-      - op: replace
-        path: "/spec/rules/0/http/paths/0/path"
-        value: "/"
+    path: patch-ingress.yaml
 
   - target:
       kind: Deployment
@@ -29,7 +23,6 @@ patches:
       kind: ConfigMap
       metadata:
         name: homepage
-        namespace: homepage
       data:
         settings.yaml: |
           title: My custom homelab Homepage
