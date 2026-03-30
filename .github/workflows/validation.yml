@@ -23,12 +23,10 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
 
       - name: Lint YAML files in app directory
-        run: yamllint .
-        working-directory: ./apps
+        run: yamllint apps
 
       - name: Lint YAML files in infrastructure directory
-        run: yamllint .
-        working-directory: ./infrastructure
+        run: yamllint infrastructure
 
   validate:
     needs:
