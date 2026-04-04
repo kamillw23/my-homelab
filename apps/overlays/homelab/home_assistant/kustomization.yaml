@@ -9,3 +9,8 @@ patches:
       kind: Ingress
       name: home-assistant
     path: patch-ingress.yaml
+
+  - target:
+      kind: Deployment
+      name: home-assistant
+    path: patch-deployment.yaml
