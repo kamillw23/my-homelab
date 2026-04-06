@@ -9,6 +9,8 @@ spec:
       labels:
         app: mosquitto
     spec:
+      securityContext:
+        fsGroup: 1883
       containers:
         - name: mosquitto
           image: eclipse-mosquitto:latest
@@ -21,6 +23,7 @@ spec:
               mountPath: /mosquitto/config/
             - name: credentials
               mountPath: /mosquitto/users/
+              subPath: users
               readOnly: true
       volumes:
         - name: configuration
@@ -29,3 +32,4 @@ spec:
         - name: credentials
           secret:
             secretName: mosquitto-users
+            defaultMode: 0440
