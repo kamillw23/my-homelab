@@ -14,3 +14,8 @@ patches:
       kind: Deployment
       name: home-assistant
     path: patch-deployment.yaml
+
+  - target:
+      kind: ConfigMap
+      name: ha-config
+    path: patch-config_map.yaml
