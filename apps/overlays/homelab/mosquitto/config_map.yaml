@@ -10,6 +10,6 @@ data:
 
     # Security
     allow_anonymous false
-    password_file /mosquitto/users/users
+    password_file /mosquitto/users
 
     listener 1883 0.0.0.0
