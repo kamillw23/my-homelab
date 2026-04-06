@@ -4,3 +4,10 @@ kind: Kustomization
 namespace: home-assistant
 resources:
   - ../../../base/mosquitto
+  - secrets.yaml
+  - config_map.yaml
+patches:
+  - path: patch-deployment.yaml
+    target:
+      kind: Deployment
+      name: mosquitto
