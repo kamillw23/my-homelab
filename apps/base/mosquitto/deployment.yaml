@@ -14,26 +14,26 @@ spec:
         app: mosquitto
     spec:
       initContainers:
-      - command:
-        - sh
-        - -c
-        - |
-          cp /mnt/raw-secrets/users /mnt/writable-secrets/users
-          mosquitto_passwd -U /mnt/writable-secrets/users
-          chown 1883:1883 /mnt/writable-secrets/users
-          chmod 700 /mnt/writable-secrets/users
-        image: eclipse-mosquitto:latest
-        imagePullPolicy: Always
-        name: prepare-credentials-file
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-        volumeMounts:
-        - mountPath: /mnt/raw-secrets
-          name: credentials-raw
-          readOnly: true
-        - mountPath: /mnt/writable-secrets
-          name: credentials
+        - command:
+            - sh
+            - -c
+            - |
+              cp /mnt/raw-secrets/users /mnt/writable-secrets/users
+              mosquitto_passwd -U /mnt/writable-secrets/users
+              chown 1883:1883 /mnt/writable-secrets/users
+              chmod 700 /mnt/writable-secrets/users
+          image: eclipse-mosquitto:latest
+          imagePullPolicy: Always
+          name: prepare-credentials-file
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          volumeMounts:
+            - mountPath: /mnt/raw-secrets
+              name: credentials-raw
+              readOnly: true
+            - mountPath: /mnt/writable-secrets
+              name: credentials
       containers:
         - name: mosquitto
           image: eclipse-mosquitto:latest
