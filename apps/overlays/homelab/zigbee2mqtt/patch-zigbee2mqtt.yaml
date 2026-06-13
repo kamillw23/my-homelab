@@ -16,7 +16,7 @@ spec:
     values:
         statefulset:
             secrets:
-                - name: zigbee2mqtt
+                name: zigbee2mqtt
 
             volumes:
                 - name: zigbee-dongle
