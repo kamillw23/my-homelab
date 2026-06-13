@@ -28,6 +28,10 @@ spec:
           resources: {}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
+          securityContext:
+            runAsUser: 0
+            runAsGroup: 0
+            privileged: false
           volumeMounts:
             - mountPath: /mnt/raw-secrets
               name: credentials-raw
