@@ -1,0 +1,70 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+    name: zigbee2mqtt
+spec:
+    targetNamespace: home-assistant
+    chart:
+      spec:
+        chart: zigbee2mqtt
+        version: '2.9.2'
+        sourceRef:
+          kind: HelmRepository
+          name: zigbee2mqtt
+          namespace: home-assistant
+    values:
+      statefulset:
+        secrets:
+          - name: zigbee2mqtt
+
+        volumes:
+          - name: zigbee-dongle
+            hostPath:
+              path: /dev/ttyUSB0
+              type: CharDevice
+          - configMap:
+            defaultMode: "660"
+            name: zigbee2mqtt
+        volumeMounts:
+          - name: zigbee-dongle
+            mountPath: /dev/ttyUSB0
+
+        storage:
+          enabled: true
+          storageClassName: local-path
+
+        nodeSelector:
+          zigbee-dongle: true
+      zigbee2mqtt:
+        # HA integration
+        homeassistant:
+          enalbed: true
+          discovery_topic: 'homeassistant'
+          status_topic: 'homeassistant/status'
+
+        # Frontend
+        frontend:
+          port: 8080
+
+        # MQTT broker
+        mqtt:
+          base_topic: zigbee2mqtt
+          server: mqtt://mosquitto-service:1883
+          user: '!secret.yaml user'
+          password: '!secret.yaml password'
+
+        # Dongle
+        serial:
+          port: /dev/ttyUSB0
+          adapter: zstack
+
+        advanced:
+          # Unikalny klucz sieciowy (ważne dla bezpieczeństwa!)
+          # Wpisz 'GENERATE', a Z2M przy pierwszym starcie wygeneruje losowy klucz
+          network_key: GENERATE
+          # Kanał Zigbee (11 to standard, ale 15, 20 lub 25 rzadziej kolidują z WiFi 2.4GHz)
+          channel: 20
+
+        # 5. Pozwolenie na dołączanie nowych urządzeń (bezpieczniej trzymać false)
+        permit_join: false
