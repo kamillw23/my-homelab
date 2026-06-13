@@ -11,6 +11,8 @@ spec:
     spec:
       securityContext:
         fsGroup: 1883
+        runAsNonRoot: true
+        runAsUser: 1883
       containers:
         - name: mosquitto
           image: eclipse-mosquitto:latest
@@ -20,16 +22,8 @@ spec:
             - "/mosquitto/config/mosquitto.conf"
           volumeMounts:
             - name: configuration
-              mountPath: /mosquitto/config/
-            - name: credentials
-              mountPath: /mosquitto/users/
-              subPath: users
-              readOnly: true
+              mountPath: /mosquitto/config
       volumes:
         - name: configuration
           configMap:
             name: mosquitto-config
-        - name: credentials
-          secret:
-            secretName: mosquitto-users
-            defaultMode: 0440
