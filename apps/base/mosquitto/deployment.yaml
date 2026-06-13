@@ -19,9 +19,9 @@ spec:
             - -c
             - |
               cp /mnt/raw-secrets/users /mnt/writable-secrets/users
-              mosquitto_passwd -U /mnt/writable-secrets/users
               chown 1883:1883 /mnt/writable-secrets/users
               chmod 700 /mnt/writable-secrets/users
+              mosquitto_passwd -U /mnt/writable-secrets/users
           image: eclipse-mosquitto:latest
           imagePullPolicy: Always
           name: prepare-credentials-file
@@ -58,14 +58,12 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 10
           securityContext:
-            runAsNonRoot: true
-            runAsUser: 1883
             readOnlyRootFilesystem: true
           volumeMounts:
             - name: mosquitto-pvc
               mountPath: /mosquitto/data
             - name: credentials
-              mountPath: /mosquitto/data/
+              mountPath: /mosquitto/users/
               subPath: users
               readOnly: true
       volumes:
