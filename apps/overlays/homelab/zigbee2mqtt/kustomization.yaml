@@ -5,6 +5,7 @@ namespace: home-assistant
 resources:
   - ../../../base/zigbee2mqtt
   - frontend-service.yaml
+  - secret.yaml
 
 patches:
   - target:
