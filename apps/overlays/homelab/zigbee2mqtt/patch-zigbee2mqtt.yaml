@@ -35,7 +35,7 @@ spec:
                 storageClassName: local-path
 
             nodeSelector:
-                zigbee-dongle: true
+                zigbee-dongle: "true"
 
         zigbee2mqtt:
             # HA integration
@@ -52,8 +52,8 @@ spec:
             mqtt:
                 base_topic: zigbee2mqtt
                 server: mqtt://mosquitto-service:1883
-                user: '!secret.yaml user'
-                password: '!secret.yaml password'
+                user: '!secret.yaml mqtt_user'
+                password: '!secret.yaml mqtt_password'
 
             # Dongle
             serial:
@@ -61,9 +61,7 @@ spec:
                 adapter: zstack
 
             advanced:
-                # Unikalny klucz sieciowy (ważne dla bezpieczeństwa!)
-                # Wpisz 'GENERATE', a Z2M przy pierwszym starcie wygeneruje losowy klucz
-                network_key: GENERATE
+                network_key: '!secret.yaml network_key'
                 # Kanał Zigbee (11 to standard, ale 15, 20 lub 25 rzadziej kolidują z WiFi 2.4GHz)
                 channel: 20
 
