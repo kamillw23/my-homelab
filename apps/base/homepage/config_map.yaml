@@ -18,9 +18,26 @@ data:
               href: https://github.com/
   services.yaml: |
     - My First Group:
-        - My First Service:
-            href: http://localhost/
-            description: Homepage is awesome
+      - My First Service:
+          href: http://localhost/
+          description: Homepage is awesome
+      - Monitorowanie:
+        - Grafana:
+            icon: grafana.png
+            href: http://monitoring.homelab  # Adres Twojej Grafany
+            description: Wizualizacja danych i metryki
+            # Opcjonalna integracja (pokazuje np. statusy alertów na kafelku)
+            # widget:
+            #   type: grafana
+            #   url: http://192.168.1.100:3000
+            #   username: admin              # Twój login (lub użyj klucza API/Tokenu)
+            #   password: twoje_haslo        # Twoje hasło
+
+      - Home Assistant:
+          icon: home-assistant.png             # Możesz zmienić na inną ikonę, np. linux.png lub docker.png
+          href: http://ha.homelab  # Adres Twojego panelu Homelab
+          description: Zarządzanie infrastrukturą domową
+
   widgets.yaml: |
     - kubernetes:
         cluster:
