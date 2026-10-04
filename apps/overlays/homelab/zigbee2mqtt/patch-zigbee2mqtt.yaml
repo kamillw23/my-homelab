@@ -40,7 +40,7 @@ spec:
         zigbee2mqtt:
             # HA integration
             homeassistant:
-                enalbed: true
+                enabled: true
                 discovery_topic: 'homeassistant'
                 status_topic: 'homeassistant/status'
 
