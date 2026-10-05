@@ -5,8 +5,8 @@ metadata:
   name: homelab-private
   namespace: flux-system
 spec:
-  interval: 5m
-  url: ssh://git@github.com/kamillw23/my-homelab-private
+  interval: 1m
+  url: ssh://git@github.com/kamillw23/homelab-private
   ref:
     branch: main
   secretRef:
