@@ -32,8 +32,8 @@ spec:
             - mountPath: /config/configuration.yaml
               subPath: configuration.yaml
               name: ha-config
-            - mountPath: /config/secret.yaml
-              subPath: secret.yaml
+            - mountPath: /config/secrets.yaml
+              subPath: secrets.yaml
               name: entities
             - mountPath: /config/packages
               name: packages
