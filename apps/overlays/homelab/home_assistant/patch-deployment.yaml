@@ -32,6 +32,10 @@ spec:
             - mountPath: /config/configuration.yaml
               subPath: configuration.yaml
               name: ha-config
+            - mountPath: /config/secret.yaml
+              name: entities
+            - mountPath: /config/packages
+              name: packages
             - mountPath: /config/http.yaml
               subPath: http.yaml
               name: ha-config
@@ -42,6 +46,12 @@ spec:
         - name: ha-config
           configMap:
             name: ha-config
+        - name: entities
+          secret:
+            secretName: ha-secrets
+        - name: packages
+          configMap:
+            name: ha-packages
         - name: localtime
           hostPath:
             path: /etc/localtime
