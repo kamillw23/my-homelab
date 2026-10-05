@@ -24,3 +24,5 @@ data:
     script: !include scripts.yaml
 
     automation: !include automations.yaml
+
+    packages: !include_dir_named packages
