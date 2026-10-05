@@ -33,6 +33,7 @@ spec:
               subPath: configuration.yaml
               name: ha-config
             - mountPath: /config/secret.yaml
+              subPath: secret.yaml
               name: entities
             - mountPath: /config/packages
               name: packages
