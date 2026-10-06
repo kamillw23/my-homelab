@@ -25,4 +25,5 @@ data:
 
     automation: !include automations.yaml
 
-    packages: !include_dir_named packages
+    homeassistant:
+      packages: !include_dir_named packages
