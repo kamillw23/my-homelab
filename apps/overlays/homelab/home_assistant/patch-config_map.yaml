@@ -24,6 +24,6 @@ data:
     script: !include scripts.yaml
 
     automation: !include automations.yaml
-    
+
     homeassistant:
       packages: !include_dir_named packages
