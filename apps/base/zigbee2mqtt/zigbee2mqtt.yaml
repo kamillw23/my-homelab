@@ -28,7 +28,7 @@ spec:
             name: z2m-statefulset
             valuesKey: statefulset.yaml
         -   kind: ConfigMap
-            name: zz2m-zigbee2mqtt
+            name: z2m-zigbee2mqtt
             valuesKey: zigbee2mqtt.yaml
         -   kind: Secret
             name: z2m-devices
