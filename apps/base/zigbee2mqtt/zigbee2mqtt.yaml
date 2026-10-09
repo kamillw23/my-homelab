@@ -21,7 +21,7 @@ spec:
             sourceRef:
                 kind: HelmRepository
                 name: zigbee2mqtt
-                namespace: fhome-assistant
+                namespace: home-assistant
             interval: 10m
     valuesFrom:
         -   kind: ConfigMap
