@@ -23,4 +23,15 @@ spec:
                 name: zigbee2mqtt
                 namespace: flux-system
             interval: 10m
+    valuesFrom:
+        -   kind: ConfigMap
+            name: z2m-statefulset
+            valuesKey: statefulset.yaml
+        -   kind: ConfigMap
+            name: zz2m-zigbee2mqtt
+            valuesKey: zigbee2mqtt.yaml
+        -   kind: Secret
+            name: z2m-devices
+            valuesKey: devices.yaml
+
     values: {}
