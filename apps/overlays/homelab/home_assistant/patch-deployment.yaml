@@ -35,9 +35,8 @@ spec:
             - mountPath: /config/secrets.yaml
               subPath: secrets.yaml
               name: entities
-            - mountPath: /config/blueprints/automation/grzanie.yaml
-              subPath: grzanie.yaml
-              name: blueprint
+            - mountPath: /config/blueprints/automation
+              name: blueprints
             - mountPath: /config/packages
               name: packages
             - mountPath: /config/http.yaml
@@ -56,7 +55,7 @@ spec:
         - name: packages
           configMap:
             name: ha-packages
-        - name: blueprint
+        - name: blueprints
           configMap:
             name: ha-blueprints
         - name: localtime
