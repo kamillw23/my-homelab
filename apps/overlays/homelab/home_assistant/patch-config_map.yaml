@@ -27,3 +27,13 @@ data:
 
     homeassistant:
       packages: !include_dir_named packages
+
+    lovelace:
+      mode: storage
+      dashboards:
+      - home: # Needs to contain a hyphen (-)
+          mode: yaml
+          title: YAML
+          icon: mdi:script
+          show_in_sidebar: true
+          filename: dashboards/home.yaml

@@ -37,6 +37,8 @@ spec:
               name: entities
             - mountPath: /config/blueprints/automation
               name: blueprints
+            - mountPath: /config/dashboards
+              name: dashboards
             - mountPath: /config/packages
               name: packages
             - mountPath: /config/http.yaml
@@ -58,6 +60,9 @@ spec:
         - name: blueprints
           configMap:
             name: ha-blueprints
+        - name: dashboards
+          configMap:
+            name: ha-dashboards
         - name: localtime
           hostPath:
             path: /etc/localtime
