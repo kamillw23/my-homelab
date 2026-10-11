@@ -33,7 +33,7 @@ data:
       dashboards:
         my-home: # Needs to contain a hyphen (-)
           mode: yaml
-          title: YAML
-          icon: mdi:script
+          title: home
+          icon: mdi:home
           show_in_sidebar: true
-          filename: dashboards/home.yaml
+          filename: /config/dashboards/home.yaml
