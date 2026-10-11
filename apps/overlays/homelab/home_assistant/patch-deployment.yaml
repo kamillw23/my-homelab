@@ -37,7 +37,7 @@ spec:
               name: entities
             - mountPath: /config/blueprints/automation/grzanie.yaml
               subPath: grzanie.yaml
-              name: entities
+              name: blueprint
             - mountPath: /config/packages
               name: packages
             - mountPath: /config/http.yaml
