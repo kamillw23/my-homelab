@@ -31,7 +31,7 @@ data:
     lovelace:
       mode: storage
       dashboards:
-      - home: # Needs to contain a hyphen (-)
+        home: # Needs to contain a hyphen (-)
           mode: yaml
           title: YAML
           icon: mdi:script
