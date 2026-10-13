@@ -13,7 +13,7 @@ metadata:
     name: zigbee2mqtt
 spec:
     interval: 5m
-    targetNamespace: zigbee2mqtt
+    targetNamespace: home-assistant
     chart:
         spec:
             chart: zigbee2mqtt
@@ -21,6 +21,17 @@ spec:
             sourceRef:
                 kind: HelmRepository
                 name: zigbee2mqtt
-                namespace: flux-system
+                namespace: home-assistant
             interval: 10m
+    valuesFrom:
+        -   kind: ConfigMap
+            name: z2m-statefulset
+            valuesKey: statefulset.yaml
+        -   kind: ConfigMap
+            name: z2m-zigbee2mqtt
+            valuesKey: zigbee2mqtt.yaml
+        -   kind: Secret
+            name: z2m-devices
+            valuesKey: devices.yaml
+
     values: {}

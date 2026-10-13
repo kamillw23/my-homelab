@@ -21,7 +21,7 @@ spec:
               name: data
       containers:
         - name: home-assistant
-          image: "ghcr.io/home-assistant/home-assistant:stable"
+          image: "ghcr.io/home-assistant/home-assistant:2026.10"
           securityContext:
             privileged: true
           ports:
@@ -35,6 +35,10 @@ spec:
             - mountPath: /config/secrets.yaml
               subPath: secrets.yaml
               name: entities
+            - mountPath: /config/blueprints/automation
+              name: blueprints
+            - mountPath: /config/dashboards
+              name: dashboards
             - mountPath: /config/packages
               name: packages
             - mountPath: /config/http.yaml
@@ -53,6 +57,12 @@ spec:
         - name: packages
           configMap:
             name: ha-packages
+        - name: blueprints
+          configMap:
+            name: ha-blueprints
+        - name: dashboards
+          configMap:
+            name: ha-dashboards
         - name: localtime
           hostPath:
             path: /etc/localtime

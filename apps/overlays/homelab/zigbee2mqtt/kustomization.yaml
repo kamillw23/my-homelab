@@ -6,8 +6,8 @@ resources:
   - ../../../base/zigbee2mqtt
   - frontend-service.yaml
 
-patches:
-  - target:
-      kind: HelmRelease
-      name: zigbee2mqtt
-    path: patch-zigbee2mqtt.yaml
+# patches:
+#   - target:
+#       kind: HelmRelease
+#       name: zigbee2mqtt
+#     path: patch-zigbee2mqtt.yaml
