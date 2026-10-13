@@ -21,7 +21,7 @@ spec:
               name: data
       containers:
         - name: home-assistant
-          image: "ghcr.io/home-assistant/home-assistant:stable"
+          image: "ghcr.io/home-assistant/home-assistant:2026.10"
           securityContext:
             privileged: true
           ports:
